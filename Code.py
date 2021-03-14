@@ -1,17 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Mar 12 00:14:00 2021
-
-@author: ander
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Student name: Philemon Anderson
-"""
-
-print ()
-
 import math
 from operator import itemgetter
 
@@ -87,7 +73,7 @@ songData3 = {"Angelica": {"Blues Traveler": 3.5, "Broken Bells": 2.0, "Norah Jon
         }
 
 # for whom are we making recommendations?
-userX = "Hailey"
+userX = "Chan"
 userXRatings = songData3[userX]
 
 # find the euclidean distance between userX's ratings, and each of the other user's ratings.
@@ -97,18 +83,18 @@ userXRatings = songData3[userX]
 # Example: [('Jordyn', 4.39), ('Chan', 3.16), ('Veronica', 1.41), ('Bill', 3.64)]
 userDistances = {}
 # <<<<< (1) YOUR CODE HERE >>>>>
-for key in songData3 :
-    if key != userX:
-        x = similarity(songData3[userX], songData3[key])
+for user in songData3 :
+    if user != userX:
+        x = similarity(songData3[userX], songData3[user])
         dist = x.minkowksi(2)
-        userDistances[key] = dist
+        userDistances[user] = dist
 
 # sort list of tuples by lowest distance to highest distance.
 # assign sorted list to variable userSortedDistances.
 # Example: [('Veronica', 1.41), ('Sam', 2.45), ('Angelica', 2.74)]
 userSortedDistances = {}
 # <<<<< (2) YOUR CODE HERE >>>>>
-userSortedDistances = sorted(userDistances.items(), key = itemgetter(1))
+userSortedDistances = sorted(userDistances.items(), user = itemgetter(1))
 
 # userX's NN is the user at the 0th position of the sorted list.
 # assign NN to userXNN.
@@ -122,16 +108,16 @@ userXNN = userSortedDistances[0][0]
 # Example: [('Slightly Stoopid', 2.5), ('Blues Traveler', 3.0), ('Phoenix', 4.0)]
 userXRecos = {}
 # <<<<< (4) YOUR CODE HERE >>>>>
-for key in songData3[userXNN] :
-    if key not in songData3[userX]:
-        userXRecos[key] = songData3[userXNN][key]
+for user in songData3[userXNN] :
+    if user not in songData3[userX]:
+        userXRecos[user] = songData3[userXNN][user]
 
 # sort list of tuples by highest rating to lowest rating.
 # assign sorted list to varaible userXSortedRecos.
 # Example: [('Phoenix', 4.0), ('Blues Traveler', 3.0), ('Slightly Stoopid', 2.5)]
 userXSortedRecos = []
 # <<<<< (5) YOUR CODE HERE >>>>>
-userXSortedRecos = sorted(userXRecos.items(), key = itemgetter(1), reverse = True)
+userXSortedRecos = sorted(userXRecos.items(), user = itemgetter(1), reverse = True)
 
 print ("Recommendations for", userX)
 print ("--------------------------")
